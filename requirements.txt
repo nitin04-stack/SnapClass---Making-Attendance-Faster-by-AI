@@ -1,0 +1,18 @@
+# utilities
+numpy
+pandas
+
+#  face recognitions 
+scikit-learn
+dlib-bin
+git+https://github.com/ageitgey/face_recognition_models
+setuptools>70.0.0
+
+supabase # it is store the various types of images 
+bcrypt # it is an hashing technique , it is provide security to out password
+
+segno # it is make an qr code by giving an urls
+pillow  # it is used to take image as input in any mchine learning project ,it gives various methods 
+# like resize image , crop image , move image,color etc.
+
+streamlit # it is an fronted library
