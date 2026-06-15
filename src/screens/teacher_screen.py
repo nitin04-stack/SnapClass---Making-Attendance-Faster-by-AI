@@ -75,7 +75,7 @@ def  teacher_tab_take_attendance():
     if not subjects:
         st.warning("you haven't created any subject yet!")
         return 
-    subject_options = {f"{s["name"]} - {s["subject_code"]}":s["subject_id"] for s in subjects}
+    subject_options = {f"{s['name']} - {s['subject_code']}":s['subject_id'] for s in subjects}
     col1,col2 = st.columns([3,1],vertical_alignment="bottom")
     with col1:
         selected_subject_label = st.selectbox("Select_Subject",options=list(subject_options.keys()))
@@ -131,7 +131,7 @@ def  teacher_tab_take_attendance():
                             "Name":student["name"],
                             "ID":student["student_id"],
                             "Source" : ", ".join(sources) if is_present else "_",
-                            "Status":"Persent" if is_present else "Absent",
+                            "Status":"Present" if is_present else "Absent",
                         })
                         attendance_to_log.append({
                             "student_id":student["student_id"],
@@ -161,14 +161,14 @@ def teacher_tab_manage_subjects():
                 ("📘","classes", sub["total_classes"]),
             ]
             def share_btn():
-                if st.button(f"Share code:{sub["name"]}",key=f"share_{sub["subject_code"]}",icon=":material/share:"):
-                    share_subject_dialog(sub["name"],sub["subject_code"])
+                if st.button(f"Share code:{sub['name']}",key=f"share_{sub['subject_code']}",icon=":material/share:"):
+                    share_subject_dialog(sub['name'],sub['subject_code'])
                 st.space()
                 
             subject_card(
-                name = sub["name"],
-                code = sub["subject_code"],
-                section = sub["section"],
+                name = sub['name'],
+                code = sub['subject_code'],
+                section = sub['section'],
                 stats = stats,
                 footer_callback = share_btn
             )
