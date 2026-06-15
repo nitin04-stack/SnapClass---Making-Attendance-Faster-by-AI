@@ -1,3 +1,5 @@
+streamlit # it is an fronted library
+
 # utilities
 numpy
 pandas
@@ -15,4 +17,5 @@ segno # it is make an qr code by giving an urls
 pillow  # it is used to take image as input in any mchine learning project ,it gives various methods 
 # like resize image , crop image , move image,color etc.
 
-streamlit # it is an fronted library
+librosa
+resemblyzer

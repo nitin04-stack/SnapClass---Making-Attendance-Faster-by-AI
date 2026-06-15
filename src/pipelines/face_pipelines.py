@@ -18,17 +18,16 @@ def load_dlib_models():
     return detector,sp,facerec
 
 def get_face_embeddings(image_np):
-    detector,sp,facerecm = load_dlib_models()
-    faces =  detector(image_np,1)
+    detector,sp,facerec = load_dlib_models()
+    faces =  detector(image_np,2)   
 
-    encoding = []
+    encodings = []
     for face in faces:
-        shape = sp(image_np,1)
-        face_descriptor = facerec.compute_face_description(image_np,shape,1)
+        shape = sp(image_np,faces[0])
+        face_descriptor = facerec.compute_face_descriptor(image_np,shape,2)
 
-        encoding.append(np.array(face_descriptor))
-
-    return encoding
+        encodings.append(np.array(face_descriptor))
+    return encodings
 
 @st.cache_resource
 def get_trained_model():
@@ -48,7 +47,6 @@ def get_trained_model():
     if len(x) == 0:
         return 0
     clf = SVC(kernel="linear",probability=True,class_weight="balanced")
-
     try:
         clf.fit(x,y)
     except ValueError:
@@ -66,7 +64,7 @@ def predict_attendance(class_image_np):
 
     model_data = get_trained_model()
     if not model_data:
-        return {},[],0
+        return detected_students,[],len(encodings)
     
     clf = model_data["clf"]
     x_train = model_data["x"]
@@ -74,16 +72,16 @@ def predict_attendance(class_image_np):
 
     all_students = sorted(list(set(y_train)))
 
-    for encoding in encoding:
-        if len(all_students):
+    for encoding in encodings:
+        if len(all_students)>=2:
             predicted_id = int(clf.predict([encoding])[0])
         else:
             predicted_id = int(all_students[0])
-        student_embedding = x_train(y_train.index[predicted_id])
+        student_embedding = x_train[y_train.index(predicted_id)]
         best_match_score = np.linalg.norm(student_embedding-encoding)
 
         resembalance_threshold = 0.6
 
-        if best_match_score <=resembalance_threshold:
+        if best_match_score <= resembalance_threshold:
             detected_students[predicted_id] = True
     return detected_students,all_students,len(encodings) 

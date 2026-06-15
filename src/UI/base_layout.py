@@ -6,9 +6,8 @@ def style_background_home():
                 .stApp{
                    background: #5865F2 !important
                 }
-
                 .stApp div[data-testid="stColumn"]{
-                    background-color:#E0E3FF ;
+                    background-color:#E0E3FF !important;
                     padding:2.5rem !important;
                     border-radius:5rem !important;
                 }
@@ -19,7 +18,7 @@ def style_background_dashboard():
     st.markdown("""
         <style>
                 .stApp{
-                   background: #E0E3FF !important
+                   background: #E0E3FF !important;
                 }
         </style>
             """,unsafe_allow_html=True)
@@ -36,21 +35,20 @@ def style_base_layout():
             #MainMenu,footer,header{
                 visibility:hidden;
             }
+            h2,h3{
+                color: #333333 !important;
+            }
                 
             .block-container{
                 padding-top:1.5rem !important;
             }
             
-            h1 {
+            h1{
                 font-family: "Climate Crisis",sans-serif !important;
                 font-size: 3.5rem !important;
                 line-height: 1.1 !important;
                 margin-bottom:0rem !important;
-                # color:#E0E3FF !important;
-            }
-                
-            h3,h4,p{
-                font-family = "outfit",sans-serif;
+                color:#E0E3FF !important;
             }
             
             h2 {
@@ -58,10 +56,7 @@ def style_base_layout():
                 font-size: 2rem !important;
                 line-height: 0.9 !important;
                 margin-bottom:0rem !important;
-                # color:"#141414" !important;
-            }
-        
-            
+            }   
             button{
                 border-radius:1.5rem !important;
                 background-color: #5865F2 !important;
@@ -87,7 +82,11 @@ def style_base_layout():
                 transition: transform 0.25s ease-in-out !important;
             }
             button:hover{
-                transform: scale(1.05)}
+                transform: scale(1.05);
+            }
+            divider{
+                color: #000000 !important;
+            }
         </style>
                """
             ,unsafe_allow_html=True)
