@@ -8,6 +8,8 @@ pandas
 setuptools
 scikit-learn
 dlib-bin
+face_recognition
+face_recognition_models # it is used to get the pre trained model for face recognition
 git+https://github.com/ageitgey/face_recognition_models
 setuptools>70.0.0
 
