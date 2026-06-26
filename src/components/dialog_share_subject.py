@@ -19,6 +19,6 @@ def share_subject_dialog(subject_name,subject_code):
       st.code(subject_code, language="text")
       st.info("Share this code with your students to let them join the class")
    with col2:
-     st.markdown("### copy link")
+     st.markdown("### scan QR to join")
      st.image(out.getvalue(),caption = "QRCode for joining the class")
       
